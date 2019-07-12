@@ -58,4 +58,20 @@
             </foreach>
         </where>
     </select>
+
+    <!-- List<User> getUsersByOBM();-->
+    <resultMap id="user_order" type="User">
+        <result property="name" column="name"/>
+        <result property="email" column="email"></result>
+        <collection property="orderList" ofType="Order">
+            <id property="id" column="id"></id>
+            <result property="userId" column="user_id"></result>
+            <result property="number" column="number"/>
+            <result property="createtime" column="createtime"/>
+        </collection>
+
+    </resultMap>
+    <select id="getUsersByOBM" resultMap="user_order">
+        select o.id ,o.user_id, o.number , o.createtime , u.name , u.email from t_user u left join t_order o on o.user_id = u.id
+    </select>
 </mapper>

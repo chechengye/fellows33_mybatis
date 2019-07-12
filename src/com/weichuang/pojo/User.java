@@ -1,6 +1,7 @@
 package com.weichuang.pojo;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class User implements Serializable{
     private int id;
@@ -8,6 +9,7 @@ public class User implements Serializable{
     private String sex;
     private String email;
 
+    private List<Order> orderList;
     public int getId() {
         return id;
     }
@@ -38,6 +40,14 @@ public class User implements Serializable{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Order> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(List<Order> orderList) {
+        this.orderList = orderList;
     }
 
     @Override

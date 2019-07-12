@@ -6,6 +6,7 @@ public class Order {
     private String number;
     private String createtime;
 
+    private User user;
     public int getId() {
         return id;
     }
@@ -38,6 +39,14 @@ public class Order {
         this.createtime = createtime;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
@@ -45,6 +54,7 @@ public class Order {
                 ", userId=" + userId +
                 ", number='" + number + '\'' +
                 ", createtime='" + createtime + '\'' +
+                ", user=" + user +
                 '}';
     }
 }

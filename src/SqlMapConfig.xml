@@ -3,6 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
+
+
     <!--引入外部属性文件-->
     <properties resource="db.properties"/>
 
@@ -35,6 +38,9 @@
         <!--<mapper class="com.weichuang.dao.UserMapper"></mapper>-->
         <package name="com.weichuang.dao"></package>
     </mappers>
+
+
+
 
 </configuration>
 

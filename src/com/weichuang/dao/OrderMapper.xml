@@ -12,4 +12,25 @@
     <select id="getAllOrders" resultMap="orderMap">
         select * from t_order
     </select>
+
+    <!--   List<OrderUser> getOrderAndUser();-->
+    <select id="getOrderAndUser" resultType="OrderUser">
+        select o.id ,o.user_id, o.number , o.createtime , u.name , u.email from t_order o left join t_user u on o.user_id = u.id
+    </select>
+
+    <!--  List<Order> getOrdersByOBO();-->
+    <resultMap id="order_user" type="Order">
+        <id property="id" column="id"></id>
+        <result property="userId" column="user_id"></result>
+        <result property="number" column="number"/>
+        <result property="createtime" column="createtime"/>
+        <association property="user" javaType="User">
+            <result property="name" column="name"/>
+            <result property="email" column="email"></result>
+        </association>
+
+    </resultMap>
+    <select id="getOrdersByOBO" resultMap="order_user">
+        select o.id ,o.user_id, o.number , o.createtime , u.name , u.email from t_order o left join t_user u on o.user_id = u.id
+    </select>
 </mapper>
