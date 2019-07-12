@@ -16,4 +16,46 @@
     <insert id="insertUser" parameterType="User">
         insert into t_user values(null , #{name} , #{sex} ,#{email});
     </insert>
+
+    <!--int getCountForUser();-->
+    <select id="getCountForUser" resultType="Integer">
+        select count(*) from t_user
+    </select>
+
+    <sql id="selector">select * from t_user</sql>
+    <!--List<User> getUsersByNameAndSex(user);-->
+    <select id="getUsersByNameAndSex" resultType="User" parameterType="User">
+        <include refid="selector"/>
+        <where>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="sex != null and sex != ''">
+                and sex = #{sex}
+            </if>
+        </where>
+
+    </select>
+
+    <!--    List<User> getUsersByIds(List<Integer> ids)   collection=list;List<User> getUsersByIds(Integer[] ids);-->
+    <select id="getUsersByIds" resultType="User">
+        <include refid="selector"/>
+        <where>
+
+            <foreach collection="array" open=" id in (" separator="," close=")" item="id">
+                #{id}
+            </foreach>
+        </where>
+    </select>
+
+    <!--    List<User> getUsersByQueryVo(QueryVo vo);-->
+    <select id="getUsersByQueryVo" resultType="User" parameterType="QueryVo">
+        <include refid="selector"/>
+        <where>
+
+            <foreach collection="ids" open=" id in (" separator="," close=")" item="id">
+                #{id}
+            </foreach>
+        </where>
+    </select>
 </mapper>
